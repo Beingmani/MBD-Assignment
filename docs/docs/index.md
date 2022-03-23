@@ -6,15 +6,16 @@ You can find the readme file in the particular exercise folders for more informa
 !!! note "Private Repository till grades are released"
     <i>Due to academic integrity policies, The source code will be submitted in the group's tab. And all the information about the code & application can be found in the documentation and report submitted.</i>
 
+
+You can find the code in the `exercise3`, `exercise4`  folder under both `MacOS` & `Cloudera` folders for the particular exercise.
+<p>The instructions to run the program is given [here](#how-to-run-the-program)</p>
+
 ## Exercise 3
 
 ---
 
 Run the given program in both standalone and pseudo-distributed mode and record the outputs.
 <p>The program should be able to run in both modes and the outputs should be the same.</p>
-
-You can find the code in the `exercise3` folder under both `MacOS` & `Cloudera` folders.
-<p>The instructions to run the program is given [here](#how-to-run-the-program)</p>
 
 ---
 
