@@ -51,9 +51,21 @@
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#exercise-3">Exercise 3</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a>
+    <li class="toctree-l2"><a class="reference internal" href="#how-to-run-the-program">How to run the program.</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#folder-structure">Folder Structure</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cloudera-setup-instructions">Cloudera Setup Instructions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#macos-instructions">MacOS Instructions</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#requirement">Requirement</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#using-docker-hadoop">Using docker-hadoop</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
     </li>
     </ul>
                     </li>
@@ -98,15 +110,18 @@
 You can find the readme file in the particular exercise folders for more information.</p>
 <div class="admonition note">
 <p class="admonition-title">Private Repository till grades are released</p>
-</div>
 <p><i>Due to academic integrity policies, The source code will be submitted in the group's tab. And all the information about the code &amp; application can be found in the documentation and report submitted.</i></p>
+</div>
 <h3 id="exercise-3">Exercise 3</h3>
 <hr />
-<p>ReactJS Single App to fetch github's user profile summary &amp; timeline of their events.</p>
-<h3 id="requirements">Requirements</h3>
-<p>For MacOS, you can find the installation guide <a href=""></a></p>
-<p>For Windows, you can find the installation guide <a href=""></a></p>
+<p>Run the given program in both standalone and pseudo-distributed mode and record the outputs.</p>
+<p>The program should be able to run in both modes and the outputs should be the same.</p>
+<p>You can find the code in the <code>exercise3</code> folder under both <code>MacOS</code> &amp; <code>Cloudera</code> folders.</p>
+<p>The instructions to run the program is given <a href="#how-to-run-the-program">here</a></p>
 <hr />
+<h3 id="how-to-run-the-program">How to run the program.</h3>
+<p>For MacOS, you can find the installation guide <a href="#macos-instructions">here</a></p>
+<p>For Windows, you can find the installation guide <a href="#cloudera-setup-instructions">here</a></p>
 <h3 id="folder-structure">Folder Structure</h3>
 <p>The repository consists of two different OS folders as both of team members used different setup for running the assignment problems, For Mac OS with M1 Chip we have used Docker and VM Cloudera was done by the Assignment Handout instructions. Exercise 3 &amp; 4 and the report latex file will found on the root.</p>
 <div class="highlight"><pre><span></span><code><span class="nx">mbd</span><span class="o">-</span><span class="nx">assignment</span>
@@ -140,6 +155,59 @@ You can find the readme file in the particular exercise folders for more informa
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">UniqueWordsTwoJobs</span><span class="p">.</span><span class="nx">java</span> <span class="err">#</span> <span class="nx">Custom</span> <span class="nx">Unique</span> <span class="nx">Words</span> <span class="nx">Using</span> <span class="nx">Two</span> <span class="nx">MapReduceJobs</span>
 <span class="err">└──</span> <span class="nx">src</span>
 </code></pre></div>
+<h3 id="cloudera-setup-instructions">Cloudera Setup Instructions</h3>
+<h3 id="macos-instructions">MacOS Instructions</h3>
+<h4 id="requirement">Requirement</h4>
+<p>The best way to install Docker on MacOS is Homebrew Cask.</p>
+<div class="highlight"><pre><span></span><code>brew cask install docker <span class="c1"># Install Docker</span>
+open /Applications/Docker.app <span class="c1"># Start Docker</span>
+</code></pre></div>
+<h5 id="using-docker-hadoop">Using docker-hadoop</h5>
+<p>To run Hadoop on Arm64 (Apple M1 Chip) and Intel Native we have used <a href="https://github.com/wxw-matt/docker-hadoop">docker-hadoop</a></p>
+<h6 id="spinning-up-the-environment-for-standalone-mode">Spinning up the environment for Standalone mode</h6>
+<p>Open terminal and clone the docker-hadoop. Then run the following commands</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/wxw-matt/docker-hadoop <span class="c1"># Clone the docker-hadoop</span>
+<span class="nb">cd</span> hadoop-standalone  <span class="c1"># Go to the docker-hadoop folder</span>
+docker build -t wxwmatt/hadoop-standalone:2.1.1-hadoop3.3.1-java8 .  <span class="c1"># Build the image</span>
+</code></pre></div>
+<h6 id="running-the-hadoop-standalone-mode">Running the Hadoop Standalone mode</h6>
+<p>Once the image is built, you can get in the container by running the following command</p>
+<div class="highlight"><pre><span></span><code>docker container run --name standalone -it <span class="o">{</span><span class="nv">$imageID</span><span class="o">}</span> /bin/bash <span class="c1"># Run the container</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">To get the imageID</p>
+<p><i>You can use the command <code>docker images</code> to get the imageID.</i></p>
+</div>
+<p>The commands given below will run the Hadoop Standalone mode.</p>
+<div class="highlight"><pre><span></span><code>mkdir -p /hadoop/input/ <span class="c1"># Create the input folder</span>
+cp input/* /hadoop/input/ <span class="c1"># Copy the input files to the input folder</span>
+hadoop jar <span class="o">{</span><span class="nv">$jarFileName</span><span class="o">}</span>.jar <span class="o">{</span><span class="nv">$className</span><span class="o">}</span> /hadoop/input/ /hadoop/output/ <span class="c1"># Run the jar file</span>
+cat /hadoop/output/part-r-00000 <span class="c1"># Print the output</span>
+</code></pre></div>
+<h6 id="spinning-up-the-environment-for-pseudo-distributed-mode">Spinning up the environment for Pseudo-distributed mode</h6>
+<p>Open terminal and clone the docker-hadoop. Then run the following commands</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/wxw-matt/docker-hadoop <span class="c1"># Clone the docker-hadoop</span>
+<span class="nb">cd</span> docker-hadoop <span class="c1"># Go to the docker-hadoop folder</span>
+docker-compose up <span class="c1"># Spin up the environment and wait for the environment to spin up.</span>
+</code></pre></div>
+<h6 id="running-the-hadoop-job-pseduo-distributed-mode">Running the Hadoop Job (Pseduo Distributed Mode)</h6>
+<p>Once the environment is up and running, we can run the Hadoop Job. We can do the following inside the <code>namenode</code> container of the environment. The <code>namenode</code> container will be mounting the <code>/app</code> folder of the environment from the host machine. The <code>/app</code> folder will contain the jars and the input files for the program.</p>
+<div class="highlight"><pre><span></span><code>docker <span class="nb">exec</span> -it namenode /bin/bash
+hdfs dfs -mkdir /input
+hdfs dfs -put /app/input/* /input
+hdfs dfs -ls /input
+hdfs dfs -cat /input/input.txt
+hadoop jar /app/WordCount.jar com.basicsetup.hadoop.WordCount /input/input.txt /output
+hdfs dfs -ls /output
+hdfs dfs -cat /output/part-r-00000
+hdfs dfs -get /output
+<span class="nb">exit</span>
+</code></pre></div>
+<p>The output of the program will be stored in the <code>/output</code> folder in the container, to get the output from the container, we can use the following command.</p>
+<div class="highlight"><pre><span></span><code>docker cp namenode:/app/output .
+</code></pre></div>
+<p>Your local machine will have the /output folder with the output of the program.</p>
+<p>Special Thanks for <a href="https://github.com/wxw-matt">Matt</a> ❤️ for the work on <a href="https://github.com/wxw-matt/docker-hadoop">Docker Hadoop</a>.</p>
               
             </div>
           </div>
@@ -185,5 +253,5 @@ You can find the readme file in the particular exercise folders for more informa
 
 <!--
 MkDocs version : 1.2.3
-Build Date UTC : 2022-03-23 11:35:16.364670+00:00
+Build Date UTC : 2022-03-23 14:09:54.595006+00:00
 -->
