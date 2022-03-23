@@ -1,4 +1,4 @@
-# Welcome to MBD Assignment Documentation
+# Welcome to Mining Big Data Assignment Documentation
 
 This Documentation consists of the answers to the assignment questions and the code used to solve the assignment.
 You can find the readme file in the particular exercise folders for more information.
