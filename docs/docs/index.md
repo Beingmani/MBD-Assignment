@@ -74,13 +74,23 @@ mbd-assignment
 │   │   ├── input # input folders
 │   │   ├── output # output folders (Artifacts)
 ├── VM Cloudera
+│   ├── Exercise 3
+│   │   ├── 
+│   │   │   ├── WordCount
+│   │   │   │   ├── WordCount.java
+│   │   ├── input # input folders
+│   │   ├── output # output folders 
+│   │   ├── Jars # SetupJars
 │   ├── Exercise 4
 │   │   ├── src
-│   │   │   ├── com.mbdassign.wordfreq
+│   │   │   ├── FreqCounter
 │   │   │   │   ├── CustomUniqueWordCount.java # Custom Unique Word Count Using Chain Mapper
 │   │   │   │   ├── CustomWordCount.java
 │   │   │   │   ├── UniqueWordsTwoJobs.java # Custom Unique Words Using Two MapReduceJobs
-└── src
+│   │   ├── input # input folders
+│   │   ├── output # output folders 
+│   │   ├── Jars # SetupJars
+└── Report.tex
 
 ```
 
