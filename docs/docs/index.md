@@ -30,7 +30,10 @@ Program to count the number of words with the specific number of letters uses a 
 
 ### Part 2
 
-Program to count the number of words (unique) with the specific number of letters, we have decided to submit two solutions as both have their significant impact on the computation. 
+Program to count the number of words (unique) with the specific number of letters, we have decided to submit two solutions as both have their significant impact on the computation. Unit test cases are written with the help of `mockito` and [mrunit](https://mrunit.apache.org) library.
+
+!!!note "ChainMapper is not supported by MrUnit"
+    <i>ChainMapper is not supported by MrUnit, so the unit testing is done for the mapper and reducers. But not the MapReduce together. The alternative way could be running the job under a "test" prefixed name would be a good choice.</i>
 
 #### a. ChainMapper 
 Using  `ChainMapper`, the program will first convert the input to key-value pairs of `<word, 1>` and then the second mapper will get the unique words and convert them to `<word, 1>`. The third mapper will get the length of the word and replace the key-value pairs as `<WordLength, 1>`. The Reducer will reduce the key-value pairs to `<WordLength, n>`. The computation is slower compared to the other solution. For the firstInputFile, it takes around ~8 ms to complete the computation. But the resource consumption is lower. (datanode, resourcemanager, yarn, nodemanager.) Dataflow is as follows: 
@@ -65,6 +68,10 @@ mbd-assignment
 │   │   │   │   ├── CustomUniqueWordCount.java # Custom Unique Word Count Using Chain Mapper
 │   │   │   │   ├── CustomWordCount.java
 │   │   │   │   ├── UniqueWordsTwoJobs.java # Custom Unique Words Using Two MapReduceJobs
+│   │   │   ├── test.mbdassign.wordfreq # Unit tests with MRUnit Library
+│   │   │   │   ├── CustomUniqueWordCountMRUnit.java 
+│   │   │   │   ├── CustomWordCountMRUnit.java
+│   │   │   │   ├── UniqueWordsTwoJobsMRUnit.java 
 │   │   ├── input # input folders
 │   │   ├── output # output folders (Artifacts)
 │   ├── Exercise3
@@ -90,7 +97,7 @@ mbd-assignment
 │   │   ├── input # input folders
 │   │   ├── output # output folders 
 │   │   ├── Jars # SetupJars
-└── Report.tex
+└── Report.pdf
 
 ```
 
