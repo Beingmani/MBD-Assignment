@@ -153,7 +153,11 @@ You can find the readme file in the particular exercise folders for more informa
 <p>Program to count the number of words with the specific number of letters uses a Mapper to convert the input to key-value pairs of <code>&lt;length, 1&gt;</code> and Reducer will reduce the key-value pairs to <code>&lt;SameLength, n&gt;</code>. The input string is sanitized against delimiter to get the proper words. Dataflow is as follows: 
 <img alt="Count Word" src="img/part-1-data-flow.png" /></p>
 <h3 id="part-2">Part 2</h3>
-<p>Program to count the number of words (unique) with the specific number of letters, we have decided to submit two solutions as both have their significant impact on the computation. </p>
+<p>Program to count the number of words (unique) with the specific number of letters, we have decided to submit two solutions as both have their significant impact on the computation. Unit test cases are written with the help of <code>mockito</code> and <a href="https://mrunit.apache.org">mrunit</a> library.</p>
+<div class="admonition note">
+<p class="admonition-title">ChainMapper is not supported by MrUnit</p>
+<p><i>ChainMapper is not supported by MrUnit, so the unit testing is done for the mapper and reducers. But not the MapReduce together. The alternative way could be running the job under a "test" prefixed name would be a good choice.</i></p>
+</div>
 <h4 id="a-chainmapper">a. ChainMapper</h4>
 <p>Using  <code>ChainMapper</code>, the program will first convert the input to key-value pairs of <code>&lt;word, 1&gt;</code> and then the second mapper will get the unique words and convert them to <code>&lt;word, 1&gt;</code>. The third mapper will get the length of the word and replace the key-value pairs as <code>&lt;WordLength, 1&gt;</code>. The Reducer will reduce the key-value pairs to <code>&lt;WordLength, n&gt;</code>. The computation is slower compared to the other solution. For the firstInputFile, it takes around ~8 ms to complete the computation. But the resource consumption is lower. (datanode, resourcemanager, yarn, nodemanager.) Dataflow is as follows: 
 <img alt="Unique Word Count Using ChainMapper" src="img/part-3-data-flow.png" /></p>
@@ -179,6 +183,10 @@ You can find the readme file in the particular exercise folders for more informa
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomUniqueWordCount</span><span class="p">.</span><span class="nx">java</span> <span class="err">#</span> <span class="nx">Custom</span> <span class="nx">Unique</span> <span class="nx">Word</span> <span class="nx">Count</span> <span class="nx">Using</span> <span class="nx">Chain</span> <span class="nx">Mapper</span>
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomWordCount</span><span class="p">.</span><span class="nx">java</span>
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">UniqueWordsTwoJobs</span><span class="p">.</span><span class="nx">java</span> <span class="err">#</span> <span class="nx">Custom</span> <span class="nx">Unique</span> <span class="nx">Words</span> <span class="nx">Using</span> <span class="nx">Two</span> <span class="nx">MapReduceJobs</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">test</span><span class="p">.</span><span class="nx">mbdassign</span><span class="p">.</span><span class="nx">wordfreq</span> <span class="err">#</span> <span class="nx">Unit</span> <span class="nx">tests</span> <span class="kd">with</span> <span class="nx">MRUnit</span> <span class="nx">Library</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomUniqueWordCountMRUnit</span><span class="p">.</span><span class="nx">java</span> 
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomWordCountMRUnit</span><span class="p">.</span><span class="nx">java</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">UniqueWordsTwoJobsMRUnit</span><span class="p">.</span><span class="nx">java</span> 
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">input</span> <span class="err">#</span> <span class="nx">input</span> <span class="nx">folders</span>
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">output</span> <span class="err">#</span> <span class="nx">output</span> <span class="nx">folders</span> <span class="p">(</span><span class="nx">Artifacts</span><span class="p">)</span>
 <span class="err">│</span>   <span class="err">├──</span> <span class="nx">Exercise3</span>
@@ -188,13 +196,23 @@ You can find the readme file in the particular exercise folders for more informa
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">input</span> <span class="err">#</span> <span class="nx">input</span> <span class="nx">folders</span>
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">output</span> <span class="err">#</span> <span class="nx">output</span> <span class="nx">folders</span> <span class="p">(</span><span class="nx">Artifacts</span><span class="p">)</span>
 <span class="err">├──</span> <span class="nx">VM</span> <span class="nx">Cloudera</span>
+<span class="err">│</span>   <span class="err">├──</span> <span class="nx">Exercise</span> <span class="mf">3</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> 
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">WordCount</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">WordCount</span><span class="p">.</span><span class="nx">java</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">input</span> <span class="err">#</span> <span class="nx">input</span> <span class="nx">folders</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">output</span> <span class="err">#</span> <span class="nx">output</span> <span class="nx">folders</span> 
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">Jars</span> <span class="err">#</span> <span class="nx">SetupJars</span>
 <span class="err">│</span>   <span class="err">├──</span> <span class="nx">Exercise</span> <span class="mf">4</span>
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">src</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">com</span><span class="p">.</span><span class="nx">mbdassign</span><span class="p">.</span><span class="nx">wordfreq</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">FreqCounter</span>
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomUniqueWordCount</span><span class="p">.</span><span class="nx">java</span> <span class="err">#</span> <span class="nx">Custom</span> <span class="nx">Unique</span> <span class="nx">Word</span> <span class="nx">Count</span> <span class="nx">Using</span> <span class="nx">Chain</span> <span class="nx">Mapper</span>
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomWordCount</span><span class="p">.</span><span class="nx">java</span>
 <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">UniqueWordsTwoJobs</span><span class="p">.</span><span class="nx">java</span> <span class="err">#</span> <span class="nx">Custom</span> <span class="nx">Unique</span> <span class="nx">Words</span> <span class="nx">Using</span> <span class="nx">Two</span> <span class="nx">MapReduceJobs</span>
-<span class="err">└──</span> <span class="nx">src</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">input</span> <span class="err">#</span> <span class="nx">input</span> <span class="nx">folders</span>
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">output</span> <span class="err">#</span> <span class="nx">output</span> <span class="nx">folders</span> 
+<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">Jars</span> <span class="err">#</span> <span class="nx">SetupJars</span>
+<span class="err">└──</span> <span class="nx">Report</span><span class="p">.</span><span class="nx">pdf</span>
 </code></pre></div>
 <h2 id="cloudera-instructions">Cloudera Instructions</h2>
 <p>For the Cloudera Setup, we use VirtualBox. For the setting up the environment we have followed the steps given in the <a href="http://snap.stanford.edu/class/cs246-2017/homeworks/hw0/tutorialv3.pdf">handout.</a></p>
@@ -306,5 +324,5 @@ hdfs dfs -get /output
 
 <!--
 MkDocs version : 1.2.3
-Build Date UTC : 2022-03-23 15:06:02.810229+00:00
+Build Date UTC : 2022-03-25 14:16:21.056194+00:00
 -->
