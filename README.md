@@ -3,7 +3,7 @@
 ## Assignment 1 - Basics and Map-Reduce
 
 ### Submitted by Group-75
-#### Yogeshvar Senthilkuamr (a1817369 | a1817369@adelaide.edu.au)
+#### Yogeshvar Senthilkumar (a1817369 | a1817369@adelaide.edu.au)
 #### Manivannan Meenakshi Sundaram (a1842066 | a1842066@adelaide.edu.au)
 
 --- 
@@ -14,7 +14,7 @@ Detailed Documentation to how to run the code, unit test, output files can be fo
 ## Assignment 2 - Advance Map-Reduce
 
 ### Submitted by Group-7
-#### Yogeshvar Senthilkuamr (a1817369 | a1817369@adelaide.edu.au)
+#### Yogeshvar Senthilkumar (a1817369 | a1817369@adelaide.edu.au)
 #### Manivannan Meenakshi Sundaram (a1842066 | a1842066@adelaide.edu.au) 
 
 --- 
