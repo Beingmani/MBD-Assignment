@@ -4,6 +4,8 @@ repo_name: MBD-Assignment
 site_author: yogeshvar
 nav:
   - Home: index.md
+  - Assignment 1: assign1.md
+  - Assignment 2: assign2.md
 theme: readthedocs
 
 markdown_extensions:
