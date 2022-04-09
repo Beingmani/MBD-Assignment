@@ -5,26 +5,26 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="None">
+  
   <meta name="author" content="yogeshvar">
   
-  <link rel="shortcut icon" href="img/favicon.ico">
-  <title>MBD Assignment Docs</title>
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Assignment 1 - MBD Assignment Docs</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="css/theme.css" />
-  <link rel="stylesheet" href="css/theme_extra.css" />
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Home";
-    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_name = "Assignment 1";
+    var mkdocs_page_input_path = "assign1.md";
     var mkdocs_page_url = null;
   </script>
   
-  <script src="js/jquery-2.1.1.min.js" defer></script>
-  <script src="js/modernizr-2.8.3.min.js" defer></script>
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
 </head>
@@ -37,17 +37,21 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="." class="icon icon-home"> MBD Assignment Docs</a>
+        <a href=".." class="icon icon-home"> MBD Assignment Docs</a>
         <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Assignment 1</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#exercise-3">Exercise 3</a>
     </li>
@@ -96,6 +100,10 @@
     </ul>
                     </li>
                 </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../assign2/">Assignment 2</a>
+                    </li>
+                </ul>
       </div>
     </div>
     </nav>
@@ -105,7 +113,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=".">MBD Assignment Docs</a>
+        <a href="..">MBD Assignment Docs</a>
       </nav>
 
       
@@ -113,14 +121,14 @@
         <div class="rst-content">
           <div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".">Docs</a> &raquo;</li>
+    <li><a href="..">Docs</a> &raquo;</li>
     
       
     
-    <li>Home</li>
+    <li>Assignment 1</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ManiVannan97/MBD-Assignment/edit/master/docs/index.md"> Edit on MBD-Assignment</a>
+        <a href="https://github.com/ManiVannan97/MBD-Assignment/edit/master/docs/assign1.md"> Edit on MBD-Assignment</a>
       
     </li>
   </ul>
@@ -131,7 +139,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="welcome-to-mining-big-data-assignment-documentation">Welcome to Mining Big Data Assignment Documentation</h1>
+                <h1 id="welcome-to-mining-big-data-assignment-1-documentation">Welcome to Mining Big Data Assignment 1 Documentation</h1>
 <p>This Documentation consists of the answers to the assignment questions and the code used to solve the assignment.
 You can find the readme file in the particular exercise folders for more information.</p>
 <div class="admonition note">
@@ -151,7 +159,7 @@ You can find the readme file in the particular exercise folders for more informa
 <hr />
 <h3 id="part-1">Part 1</h3>
 <p>Program to count the number of words with the specific number of letters uses a Mapper to convert the input to key-value pairs of <code>&lt;length, 1&gt;</code> and Reducer will reduce the key-value pairs to <code>&lt;SameLength, n&gt;</code>. The input string is sanitized against delimiter to get the proper words. Dataflow is as follows: 
-<img alt="Count Word" src="img/part-1-data-flow.png" /></p>
+<img alt="Count Word" src="../img/part-1-data-flow.png" /></p>
 <h3 id="part-2">Part 2</h3>
 <p>Program to count the number of words (unique) with the specific number of letters, we have decided to submit two solutions as both have their significant impact on the computation. Unit test cases are written with the help of <code>mockito</code> and <a href="https://mrunit.apache.org">mrunit</a> library.</p>
 <div class="admonition note">
@@ -160,16 +168,16 @@ You can find the readme file in the particular exercise folders for more informa
 </div>
 <h4 id="a-chainmapper">a. ChainMapper</h4>
 <p>Using  <code>ChainMapper</code>, the program will first convert the input to key-value pairs of <code>&lt;word, 1&gt;</code> and then the second mapper will get the unique words and convert them to <code>&lt;word, 1&gt;</code>. The third mapper will get the length of the word and replace the key-value pairs as <code>&lt;WordLength, 1&gt;</code>. The Reducer will reduce the key-value pairs to <code>&lt;WordLength, n&gt;</code>. The computation is slower compared to the other solution. For the firstInputFile, it takes around ~8 ms to complete the computation. But the resource consumption is lower. (datanode, resourcemanager, yarn, nodemanager.) Dataflow is as follows: 
-<img alt="Unique Word Count Using ChainMapper" src="img/part-3-data-flow.png" /></p>
+<img alt="Unique Word Count Using ChainMapper" src="../img/part-3-data-flow.png" /></p>
 <h4 id="b-two-mapreduce-jobs">b. Two MapReduce Jobs</h4>
 <p>Considering working with Two MapReduce Jobs instead of a single job, the program will first convert the input to key-value pairs of <code>&lt;word, 1&gt;</code> and reducer will get the count of the words. The second job will map the unique words and convert them to <code>&lt;word, 1&gt;</code> and reduce the key-value pairs to <code>&lt;WordLength, n&gt;</code>. Compared to the other solution, it is faster. For the firstInputFile, it takes around ~2 ms to complete the computation. But the resource consumption is higher. (datanode, resourcemanager, yarn, nodemanager.) Dataflow is as follows: 
-<img alt="Unique Word Count Using MapReduce" src="img/part-3-data-flow-multiple-jobs.png" /></p>
+<img alt="Unique Word Count Using MapReduce" src="../img/part-3-data-flow-multiple-jobs.png" /></p>
 <h2 id="how-to-run-the-program">How to run the program.</h2>
 <p>For MacOS, you can find the installation guide <a href="#macos-instructions">here</a></p>
 <p>For Windows, you can find the installation guide <a href="#cloudera-setup-instructions">here</a></p>
 <h2 id="folder-structure">Folder Structure</h2>
 <p>The repository consists of two different OS folders as both of team members used different setup for running the assignment problems, For Mac OS with M1 Chip we have used Docker and VM Cloudera was done by the Assignment Handout instructions. Exercise 3 &amp; 4 and the report latex file will found on the root.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">mbd</span><span class="o">-</span><span class="nx">assignment</span>
+<div class="highlight"><pre><span></span><code><span class="nx">Assign1</span>
 <span class="err">├──</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
 <span class="err">├──</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
 <span class="err">├──</span> <span class="p">.</span><span class="nx">gitignore</span>
@@ -284,6 +292,15 @@ hdfs dfs -get /output
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../assign2/" class="btn btn-neutral float-right" title="Assignment 2">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
@@ -306,13 +323,17 @@ hdfs dfs -get /output
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../assign2/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="js/theme_extra.js" defer></script>
-    <script src="js/theme.js" defer></script>
-      <script src="search/main.js" defer></script>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
     <script defer>
         window.onload = function () {
             SphinxRtdTheme.Navigation.enable(true);
@@ -321,8 +342,3 @@ hdfs dfs -get /output
 
 </body>
 </html>
-
-<!--
-MkDocs version : 1.2.3
-Build Date UTC : 2022-03-25 14:16:21.056194+00:00
--->

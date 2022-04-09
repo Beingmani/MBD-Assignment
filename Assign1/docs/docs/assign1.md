@@ -1,11 +1,10 @@
-# Welcome to Mining Big Data Assignment Documentation
+# Welcome to Mining Big Data Assignment 1 Documentation
 
 This Documentation consists of the answers to the assignment questions and the code used to solve the assignment.
 You can find the readme file in the particular exercise folders for more information.
 
 !!! note "Private Repository till grades are released"
     <i>Due to academic integrity policies, The source code will be submitted in the group's tab. And all the information about the code & application can be found in the documentation and report submitted.</i>
-
 
 You can find the code in the `exercise3`, `exercise4`  folder under both `MacOS` & `Cloudera` folders for the particular exercise.
 <p>The instructions to run the program is given [here](#how-to-run-the-program)</p>
@@ -54,7 +53,7 @@ For Windows, you can find the installation guide [here](#cloudera-setup-instruct
 The repository consists of two different OS folders as both of team members used different setup for running the assignment problems, For Mac OS with M1 Chip we have used Docker and VM Cloudera was done by the Assignment Handout instructions. Exercise 3 & 4 and the report latex file will found on the root.
 
 ```js
-mbd-assignment
+Assign1
 ├── README.md
 ├── package.json
 ├── .gitignore
