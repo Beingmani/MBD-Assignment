@@ -49,51 +49,19 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#exercise-3">Exercise 3</a>
+    <li class="toctree-l2"><a class="reference internal" href="#assignment-1-basics-and-map-reduce-group-75">Assignment 1: Basics and Map-Reduce (Group-75)</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#exercise-4">Exercise 4</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#part-1">Part 1</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#part-2">Part 2</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#a-chainmapper">a. ChainMapper</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#b-two-mapreduce-jobs">b. Two MapReduce Jobs</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#how-to-run-the-program">How to run the program.</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#folder-structure">Folder Structure</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#cloudera-instructions">Cloudera Instructions</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#running-the-program">Running the program</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#macos-instructions">MacOS Instructions</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#requirements">Requirements</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#using-docker-hadoop">Using docker-hadoop</a>
-        <ul>
-    <li class="toctree-l4"><a class="reference internal" href="#spinning-up-the-environment-for-standalone-mode">Spinning up the environment for Standalone mode</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#running-the-hadoop-standalone-mode">Running the Hadoop Standalone mode</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#spinning-up-the-environment-for-pseudo-distributed-mode">Spinning up the environment for Pseudo-distributed mode</a>
-    </li>
-    <li class="toctree-l4"><a class="reference internal" href="#running-the-hadoop-job-pseduo-distributed-mode">Running the Hadoop Job (Pseduo Distributed Mode)</a>
-    </li>
-        </ul>
-    </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#assignment-2-advance-map-reduce-group-7">Assignment 2: Advance Map-Reduce (Group-7)</a>
     </li>
     </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="assign1/">Assignment 1</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="assign2/">Assignment 2</a>
                     </li>
                 </ul>
       </div>
@@ -138,151 +106,21 @@ You can find the readme file in the particular exercise folders for more informa
 <p class="admonition-title">Private Repository till grades are released</p>
 <p><i>Due to academic integrity policies, The source code will be submitted in the group's tab. And all the information about the code &amp; application can be found in the documentation and report submitted.</i></p>
 </div>
-<p>You can find the code in the <code>exercise3</code>, <code>exercise4</code>  folder under both <code>MacOS</code> &amp; <code>Cloudera</code> folders for the particular exercise.</p>
-<p>The instructions to run the program is given [here](#how-to-run-the-program)</p>
-
-<h2 id="exercise-3">Exercise 3</h2>
-<hr />
-<p>Run the given program in both standalone and pseudo-distributed mode and record the outputs.</p>
-<p>The program should be able to run in both modes and the outputs should be the same.</p>
-
-<hr />
-<h2 id="exercise-4">Exercise 4</h2>
-<hr />
-<h3 id="part-1">Part 1</h3>
-<p>Program to count the number of words with the specific number of letters uses a Mapper to convert the input to key-value pairs of <code>&lt;length, 1&gt;</code> and Reducer will reduce the key-value pairs to <code>&lt;SameLength, n&gt;</code>. The input string is sanitized against delimiter to get the proper words. Dataflow is as follows: 
-<img alt="Count Word" src="img/part-1-data-flow.png" /></p>
-<h3 id="part-2">Part 2</h3>
-<p>Program to count the number of words (unique) with the specific number of letters, we have decided to submit two solutions as both have their significant impact on the computation. Unit test cases are written with the help of <code>mockito</code> and <a href="https://mrunit.apache.org">mrunit</a> library.</p>
-<div class="admonition note">
-<p class="admonition-title">ChainMapper is not supported by MrUnit</p>
-<p><i>ChainMapper is not supported by MrUnit, so the unit testing is done for the mapper and reducers. But not the MapReduce together. The alternative way could be running the job under a "test" prefixed name would be a good choice.</i></p>
-</div>
-<h4 id="a-chainmapper">a. ChainMapper</h4>
-<p>Using  <code>ChainMapper</code>, the program will first convert the input to key-value pairs of <code>&lt;word, 1&gt;</code> and then the second mapper will get the unique words and convert them to <code>&lt;word, 1&gt;</code>. The third mapper will get the length of the word and replace the key-value pairs as <code>&lt;WordLength, 1&gt;</code>. The Reducer will reduce the key-value pairs to <code>&lt;WordLength, n&gt;</code>. The computation is slower compared to the other solution. For the firstInputFile, it takes around ~8 ms to complete the computation. But the resource consumption is lower. (datanode, resourcemanager, yarn, nodemanager.) Dataflow is as follows: 
-<img alt="Unique Word Count Using ChainMapper" src="img/part-3-data-flow.png" /></p>
-<h4 id="b-two-mapreduce-jobs">b. Two MapReduce Jobs</h4>
-<p>Considering working with Two MapReduce Jobs instead of a single job, the program will first convert the input to key-value pairs of <code>&lt;word, 1&gt;</code> and reducer will get the count of the words. The second job will map the unique words and convert them to <code>&lt;word, 1&gt;</code> and reduce the key-value pairs to <code>&lt;WordLength, n&gt;</code>. Compared to the other solution, it is faster. For the firstInputFile, it takes around ~2 ms to complete the computation. But the resource consumption is higher. (datanode, resourcemanager, yarn, nodemanager.) Dataflow is as follows: 
-<img alt="Unique Word Count Using MapReduce" src="img/part-3-data-flow-multiple-jobs.png" /></p>
-<h2 id="how-to-run-the-program">How to run the program.</h2>
-<p>For MacOS, you can find the installation guide <a href="#macos-instructions">here</a></p>
-<p>For Windows, you can find the installation guide <a href="#cloudera-setup-instructions">here</a></p>
-<h2 id="folder-structure">Folder Structure</h2>
-<p>The repository consists of two different OS folders as both of team members used different setup for running the assignment problems, For Mac OS with M1 Chip we have used Docker and VM Cloudera was done by the Assignment Handout instructions. Exercise 3 &amp; 4 and the report latex file will found on the root.</p>
-<div class="highlight"><pre><span></span><code><span class="nx">mbd</span><span class="o">-</span><span class="nx">assignment</span>
-<span class="err">├──</span> <span class="nx">README</span><span class="p">.</span><span class="nx">md</span>
-<span class="err">├──</span> <span class="kr">package</span><span class="p">.</span><span class="nx">json</span>
-<span class="err">├──</span> <span class="p">.</span><span class="nx">gitignore</span>
-<span class="err">├──</span> <span class="nx">docs</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="nx">docs</span>
-<span class="err">│</span>   <span class="err">└──</span> <span class="nx">mkdocs</span><span class="p">.</span><span class="nx">yml</span>
-<span class="err">├──</span> <span class="nx">MacOS</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="nx">Exercise4</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">src</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">com</span><span class="p">.</span><span class="nx">mbdassign</span><span class="p">.</span><span class="nx">wordfreq</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomUniqueWordCount</span><span class="p">.</span><span class="nx">java</span> <span class="err">#</span> <span class="nx">Custom</span> <span class="nx">Unique</span> <span class="nx">Word</span> <span class="nx">Count</span> <span class="nx">Using</span> <span class="nx">Chain</span> <span class="nx">Mapper</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomWordCount</span><span class="p">.</span><span class="nx">java</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">UniqueWordsTwoJobs</span><span class="p">.</span><span class="nx">java</span> <span class="err">#</span> <span class="nx">Custom</span> <span class="nx">Unique</span> <span class="nx">Words</span> <span class="nx">Using</span> <span class="nx">Two</span> <span class="nx">MapReduceJobs</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">test</span><span class="p">.</span><span class="nx">mbdassign</span><span class="p">.</span><span class="nx">wordfreq</span> <span class="err">#</span> <span class="nx">Unit</span> <span class="nx">tests</span> <span class="kd">with</span> <span class="nx">MRUnit</span> <span class="nx">Library</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomUniqueWordCountMRUnit</span><span class="p">.</span><span class="nx">java</span> 
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomWordCountMRUnit</span><span class="p">.</span><span class="nx">java</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">UniqueWordsTwoJobsMRUnit</span><span class="p">.</span><span class="nx">java</span> 
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">input</span> <span class="err">#</span> <span class="nx">input</span> <span class="nx">folders</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">output</span> <span class="err">#</span> <span class="nx">output</span> <span class="nx">folders</span> <span class="p">(</span><span class="nx">Artifacts</span><span class="p">)</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="nx">Exercise3</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">src</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">com</span><span class="p">.</span><span class="nx">basicsetup</span><span class="p">.</span><span class="nx">hadoop</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">WordCount</span><span class="p">.</span><span class="nx">java</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">input</span> <span class="err">#</span> <span class="nx">input</span> <span class="nx">folders</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">output</span> <span class="err">#</span> <span class="nx">output</span> <span class="nx">folders</span> <span class="p">(</span><span class="nx">Artifacts</span><span class="p">)</span>
-<span class="err">├──</span> <span class="nx">VM</span> <span class="nx">Cloudera</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="nx">Exercise</span> <span class="mf">3</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> 
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">WordCount</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">WordCount</span><span class="p">.</span><span class="nx">java</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">input</span> <span class="err">#</span> <span class="nx">input</span> <span class="nx">folders</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">output</span> <span class="err">#</span> <span class="nx">output</span> <span class="nx">folders</span> 
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">Jars</span> <span class="err">#</span> <span class="nx">SetupJars</span>
-<span class="err">│</span>   <span class="err">├──</span> <span class="nx">Exercise</span> <span class="mf">4</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">src</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">FreqCounter</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomUniqueWordCount</span><span class="p">.</span><span class="nx">java</span> <span class="err">#</span> <span class="nx">Custom</span> <span class="nx">Unique</span> <span class="nx">Word</span> <span class="nx">Count</span> <span class="nx">Using</span> <span class="nx">Chain</span> <span class="nx">Mapper</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">CustomWordCount</span><span class="p">.</span><span class="nx">java</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">UniqueWordsTwoJobs</span><span class="p">.</span><span class="nx">java</span> <span class="err">#</span> <span class="nx">Custom</span> <span class="nx">Unique</span> <span class="nx">Words</span> <span class="nx">Using</span> <span class="nx">Two</span> <span class="nx">MapReduceJobs</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">input</span> <span class="err">#</span> <span class="nx">input</span> <span class="nx">folders</span>
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">output</span> <span class="err">#</span> <span class="nx">output</span> <span class="nx">folders</span> 
-<span class="err">│</span>   <span class="err">│</span>   <span class="err">├──</span> <span class="nx">Jars</span> <span class="err">#</span> <span class="nx">SetupJars</span>
-<span class="err">└──</span> <span class="nx">Report</span><span class="p">.</span><span class="nx">pdf</span>
-</code></pre></div>
-<h2 id="cloudera-instructions">Cloudera Instructions</h2>
-<p>For the Cloudera Setup, we use VirtualBox. For the setting up the environment we have followed the steps given in the <a href="http://snap.stanford.edu/class/cs246-2017/homeworks/hw0/tutorialv3.pdf">handout.</a></p>
-<h3 id="running-the-program">Running the program</h3>
-<p>The given source code is compiled and the jar file can be used to run the program.</p>
-<div class="highlight"><pre><span></span><code>hdfs dfs -mkdir /input
-hdfs dfs -put input/* /input
-hdfs dfs -ls /input
-hdfs dfs -cat /input/input.txt
-hadoop jar WordCount.jar com.basicsetup.hadoop.WordCount /input/input.txt /output
-hdfs dfs -ls /output
-hdfs dfs -cat /output/part-r-00000
-hdfs dfs -get /output
-</code></pre></div>
-<h2 id="macos-instructions">MacOS Instructions</h2>
-<h3 id="requirements">Requirements</h3>
-<p>The best way to install Docker on MacOS is Homebrew Cask.</p>
-<div class="highlight"><pre><span></span><code>brew cask install docker <span class="c1"># Install Docker</span>
-open /Applications/Docker.app <span class="c1"># Start Docker</span>
-</code></pre></div>
-<h3 id="using-docker-hadoop">Using docker-hadoop</h3>
-<p>To run Hadoop on Arm64 (Apple M1 Chip) and Intel Native we have used <a href="https://github.com/wxw-matt/docker-hadoop">docker-hadoop</a></p>
-<h5 id="spinning-up-the-environment-for-standalone-mode">Spinning up the environment for Standalone mode</h5>
-<p>Open terminal and clone the docker-hadoop. Then run the following commands</p>
-<div class="highlight"><pre><span></span><code>git clone https://github.com/wxw-matt/docker-hadoop <span class="c1"># Clone the docker-hadoop</span>
-<span class="nb">cd</span> hadoop-standalone  <span class="c1"># Go to the docker-hadoop folder</span>
-docker build -t wxwmatt/hadoop-standalone:2.1.1-hadoop3.3.1-java8 .  <span class="c1"># Build the image</span>
-</code></pre></div>
-<h5 id="running-the-hadoop-standalone-mode">Running the Hadoop Standalone mode</h5>
-<p>Once the image is built, you can get in the container by running the following command</p>
-<div class="highlight"><pre><span></span><code>docker container run --name standalone -it <span class="o">{</span><span class="nv">$imageID</span><span class="o">}</span> /bin/bash <span class="c1"># Run the container</span>
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">To get the imageID</p>
-<p><i>You can use the command <code>docker images</code> to get the imageID.</i></p>
-</div>
-<p>The commands given below will run the Hadoop Standalone mode.</p>
-<div class="highlight"><pre><span></span><code>mkdir -p /hadoop/input/ <span class="c1"># Create the input folder</span>
-cp input/* /hadoop/input/ <span class="c1"># Copy the input files to the input folder</span>
-hadoop jar <span class="o">{</span><span class="nv">$jarFileName</span><span class="o">}</span>.jar <span class="o">{</span><span class="nv">$className</span><span class="o">}</span> /hadoop/input/ /hadoop/output/ <span class="c1"># Run the jar file</span>
-cat /hadoop/output/part-r-00000 <span class="c1"># Print the output</span>
-</code></pre></div>
-<h5 id="spinning-up-the-environment-for-pseudo-distributed-mode">Spinning up the environment for Pseudo-distributed mode</h5>
-<p>Open terminal and clone the docker-hadoop. Then run the following commands</p>
-<div class="highlight"><pre><span></span><code>git clone https://github.com/wxw-matt/docker-hadoop <span class="c1"># Clone the docker-hadoop</span>
-<span class="nb">cd</span> docker-hadoop <span class="c1"># Go to the docker-hadoop folder</span>
-docker-compose up <span class="c1"># Spin up the environment and wait for the environment to spin up.</span>
-</code></pre></div>
-<h5 id="running-the-hadoop-job-pseduo-distributed-mode">Running the Hadoop Job (Pseduo Distributed Mode)</h5>
-<p>Once the environment is up and running, we can run the Hadoop Job. We can do the following inside the <code>namenode</code> container of the environment. The <code>namenode</code> container will be mounting the <code>/app</code> folder of the environment from the host machine. The <code>/app</code> folder will contain the jars and the input files for the program.</p>
-<div class="highlight"><pre><span></span><code>docker <span class="nb">exec</span> -it namenode /bin/bash
-hdfs dfs -mkdir /input
-hdfs dfs -put /app/input/* /input
-hdfs dfs -ls /input
-hdfs dfs -cat /input/input.txt
-hadoop jar /app/WordCount.jar com.basicsetup.hadoop.WordCount /input/input.txt /output
-hdfs dfs -ls /output
-hdfs dfs -cat /output/part-r-00000
-hdfs dfs -get /output
-<span class="nb">exit</span>
-</code></pre></div>
-<p>The output of the program will be stored in the <code>/output</code> folder in the container, to get the output from the container, we can use the following command.</p>
-<div class="highlight"><pre><span></span><code>docker cp namenode:/app/output .
-</code></pre></div>
-<p>Your local machine will have the /output folder with the output of the program.</p>
-<p>Special Thanks for <a href="https://github.com/wxw-matt">Matt</a> ❤️ for the work on <a href="https://github.com/wxw-matt/docker-hadoop">Docker Hadoop</a>.</p>
+<h3 id="assignment-1-basics-and-map-reduce-group-75">Assignment 1: Basics and Map-Reduce (Group-75)</h3>
+<p>Detailed Documentation to how to run the code, unit test, output files can be found <a href="https://beingmani.github.io/MBD-Assignment/assign1/">https://beingmani.github.io/MBD-Assignment/assign1/</a> for the different OS we have used for the assignment. (Cloudera VM, MacOS with Docker.)</p>
+<h3 id="assignment-2-advance-map-reduce-group-7">Assignment 2: Advance Map-Reduce (Group-7)</h3>
+<p>Detailed Documentation to how to run the code, output files can be found <a href="https://beingmani.github.io/MBD-Assignment/assign2/">https://beingmani.github.io/MBD-Assignment/assign2/</a> we have used in the assignment. The instruction to run the code is provided in the Assignment 1 documentation.  </p>
               
             </div>
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="assign1/" class="btn btn-neutral float-right" title="Assignment 1">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
   
 
   <hr/>
@@ -307,6 +145,8 @@ hdfs dfs -get /output
     
     
     
+      <span><a href="assign1/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
   </span>
 </div>
     <script>var base_url = '.';</script>
@@ -324,5 +164,5 @@ hdfs dfs -get /output
 
 <!--
 MkDocs version : 1.2.3
-Build Date UTC : 2022-03-25 14:16:21.056194+00:00
+Build Date UTC : 2022-04-09 11:11:32.202099+00:00
 -->
